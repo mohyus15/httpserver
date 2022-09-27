@@ -30,7 +30,7 @@ private HttpServer(int port) throws IOException {
     private void handleReguestSockets(Socket clientSockets) throws IOException {
     var res = "<h1>hallæ verden</h1>";
     clientSockets.getOutputStream().write(("HTTP/1.1 200 ok\r\n" + "Content-Length:" + res.length() +"\r\r" +
-            "content-type:text/plain\r\n" +
+            "Content-type:text/plain: charset=utf-8\r\n" +
             "\r\n" + res).getBytes(StandardCharsets.UTF_8));
     }
 
