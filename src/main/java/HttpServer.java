@@ -28,10 +28,10 @@ private HttpServer(int port) throws IOException {
     }
 
     private void handleReguestSockets(Socket clientSockets) throws IOException {
-    var res = "<h1>home page</h1>";
+    var res = "<h1>hallæ verden</h1>";
     clientSockets.getOutputStream().write(("HTTP/1.1 200 ok\r\n" + "Content-Length:" + res.length() +"\r\r" +
-            "connection: close\r\n" +
-            "\r\n" + res).getBytes());
+            "content-type:text/plain\r\n" +
+            "\r\n" + res).getBytes(StandardCharsets.UTF_8));
     }
 
 }
