@@ -28,7 +28,7 @@ private HttpServer(int port) throws IOException {
     }
 
     private void handleReguestSockets(Socket clientSockets) throws IOException {
-    var res = "hello world";
+    var res = "<h1>home page</h1>";
     clientSockets.getOutputStream().write(("HTTP/1.1 200 ok\r\n" + "Content-Length:" + res.length() +"\r\r" +
             "connection: close\r\n" +
             "\r\n" + res).getBytes());
