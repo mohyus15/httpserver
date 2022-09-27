@@ -1,5 +1,7 @@
 import java.io.IOException;
 import java.net.ServerSocket;
+import java.net.Socket;
+import java.nio.charset.StandardCharsets;
 
 public class HttpServer {
     private final ServerSocket serverSocket;
@@ -16,12 +18,20 @@ private HttpServer(int port) throws IOException {
   private void start(){
      new Thread(() -> {
          try {
-             serverSocket.accept();
+          var clientSockets =   serverSocket.accept();
+          handleReguestSockets(clientSockets);
          } catch (IOException e) {
              e.printStackTrace();
          }
      }).start();
 
+    }
+
+    private void handleReguestSockets(Socket clientSockets) throws IOException {
+    var res = "hello world";
+    clientSockets.getOutputStream().write(("HTTP/1.1 200 ok\r\n" + "Content-Length:" + res.length() +"\r\r" +
+            "connection: close\r\n" +
+            "\r\n" + res).getBytes());
     }
 
 }
